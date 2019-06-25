@@ -11,9 +11,9 @@
   </node>
 
   <node pkg="tf" type="static_transform_publisher" name="bf2camera"
-    args="0.57 0.0 0.12 0 0 0 base_footprint camera_link 100"/>
+    args="0.11 0.0 0.2 0 0 0 base_footprint camera_link 100"/>
   <node pkg="tf" type="static_transform_publisher" name="bf2laser"
-    args="0.13 0.0 0.19 0 0 0 base_footprint laser 100"/>
+    args="0 0.0 0.41 3.14 3.14 0 base_footprint laser 100"/>
 
 
 </launch>
