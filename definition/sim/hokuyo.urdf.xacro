@@ -7,7 +7,7 @@
   <xacro:macro name="hokuyo" params="name parent *origin ros_topic update_rate ray_count min_angle max_angle">
     <joint name="laser" type="fixed">
       <axis xyz="0 0 0" />
-      <origin xyz="0.0 0.0 0.43" rpy="0.0 0.0 0.0" />
+      <origin xyz="0.13 0.0 0.21" rpy="0.0 0.0 0.0" />
       <parent link="base_link" />
       <child link="base_laser_link" />
     </joint>
