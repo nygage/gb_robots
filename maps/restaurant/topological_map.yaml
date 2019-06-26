@@ -1,0 +1,14 @@
+room_ids: [main_room]
+door_ids: []
+connections: []
+waypoints_ids: [wp_entry, wp_mesa_1, wp_mesa_2, wp_mesa_3, wp_mesa_4, wp_mesa_5, wp_mesa_6, wp_barman]
+
+
+wp_entry: {room: main_room, position: "10.181921, 16.204655, 0.168933"}
+wp_mesa_1: {room: main_room, position: "13.538314, 17.355419, -1.552322"}
+wp_mesa_2: {room: main_room, position: "13.490910, 19.015514, 1.572246"}
+wp_mesa_3: {room: main_room, position: "15.111806, 17.330473, -1.505047"}
+wp_mesa_4: {room: main_room, position: "15.130218, 19.101913, 1.638975"}
+wp_mesa_5: {room: main_room, position: "16.793507, 17.311264, -1.579395"}
+wp_mesa_6: {room: main_room, position: "16.755253, 19.005106, 1.591165"}
+wp_barman: {room: main_room, position: "11.877656, 19.423685, -3.110053"}
