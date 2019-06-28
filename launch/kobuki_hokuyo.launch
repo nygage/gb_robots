@@ -15,5 +15,4 @@
   <node pkg="tf" type="static_transform_publisher" name="bf2laser"
     args="0 0.0 0.41 3.14 3.14 0 base_footprint laser 100"/>
 
-
 </launch>
