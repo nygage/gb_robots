@@ -61,3 +61,10 @@ inflation_layer:
 
 static_layer:
   enabled:              true
+
+proxemic_layer:
+  enabled:              true
+  cutoff: 10.0
+  amplitude: 254.0
+  covariance: 0.75
+  factor: 5.0
