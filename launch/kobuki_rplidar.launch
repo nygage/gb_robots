@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
 <launch>
 
- <arg name="laser_serial_port" default="/dev/ttyUSB0"/>
+ <arg name="laser_serial_port" default="/dev/rplidar"/>
 
   <include file="$(find openni2_launch)/launch/openni2.launch"/>
   <include file="$(find kobuki_node)/launch/robot_with_tf.launch"/>
@@ -23,4 +23,44 @@
   <node pkg="tf" type="static_transform_publisher" name="bf2laser"
     args="0.13 0.0 0.19 3.14 0 0 base_footprint laser 100"/>
 
+  <arg name="camera" default="camera"/>
+
+  <node pkg="pointcloud_to_laserscan" type="pointcloud_to_laserscan_node" name="pointcloud_to_laserscan">
+    <remap from="cloud_in" to="$(arg camera)/depth_registered/points"/>
+    <remap from="scan" to="$(arg camera)/scan"/>
+    <rosparam>
+      target_frame: camera_link # Leave disabled to output scan in pointcloud frame
+      transform_tolerance: 0.01
+      min_height: 0.0
+      max_height: 1.0
+
+      angle_min: -1.5708 # -M_PI/2
+      angle_max: 1.5708 # M_PI/2
+      angle_increment: 0.0087 # M_PI/360.0
+      scan_time: 0.3333
+      range_min: 0.45
+      range_max: 4.0
+      use_inf: true
+      inf_epsilon: 1.0
+
+      # Concurrency level, affects number of pointclouds queued for processing and number of threads used
+      # 0 : Detect number of cores
+      # 1 : Single threaded
+      # 2->inf : Parallelism level
+      concurrency_level: 1
+    </rosparam>
+  </node>
+
+  <node pkg="ira_laser_tools" name="laserscan_multi_merger" type="laserscan_multi_merger" output="screen">
+   <param name="destination_frame" value="/laser"/>
+   <param name="cloud_destination_topic" value="/merged_cloud"/>
+   <param name="scan_destination_topic" value="/scan_multi"/>
+   <param name="laserscan_topics" value ="/camera/scan /scan_filtered" /> <!-- LIST OF THE LASER SCAN TOPICS TO SUBSCRIBE -->
+   <param name="angle_min" value="-3.14"/>
+   <param name="angle_max" value="3.14"/>
+   <param name="angle_increment" value="0.0058"/>
+   <param name="scan_time" value="0.0333333"/>
+   <param name="range_min" value="0.30"/>
+   <param name="range_max" value="50.0"/>
+  </node>
 </launch>
